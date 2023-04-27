@@ -1,14 +1,13 @@
 Package: scVar
 Title:  scVar (Biological variability for scRNA-seq data)
 Version: 0.0.0.9000
-Authors@R: 
-    person("Huiwen", "Zheng")
+Author:Huiwen Zheng 
 Description: A wrapper for 14 metrics that calculating biological variability at single cell-type level
 License: use_mit_license()
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
-Imports::
+Imports:
       SingleCellExperiment,
       scran
       
