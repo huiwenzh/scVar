@@ -1,18 +1,18 @@
 #'Identifying biological variability in scRNA-seq data
 #'@author Huiwen Zheng
 #'@param dat  Raw count matrix
-#'@param norm Logic parameter to indicate normalisation (default run by scran)
+#'@param norm Logic parameter to indicate normalisation (default to F)
 #'@param metric Name of the metric to run for analysis
 #'@param org Organisms name, only required for DM
 #'@param group covariates for the count matrix.
 #'@return A named vector with corresponding gene expression variability 
 #'
 #'@export
-scVar <- function(dat, norm, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV','DESeq2','edgeR','Seurat_mvp','Seurat_vst',  'DM',"glmGamPoi","BASiCS"), org='mm9', group=NULL){
+scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV','DESeq2','edgeR','Seurat_mvp','Seurat_vst',  'DM',"glmGamPoi","BASiCS"), org='mm9', group=NULL){
   if (ncol(dat)<50){
     message('Small sample size may lead to incorrect estimation')
   }
-  dat <- dat[rowSums(dat)!=0,]
+  dat <- dat[Matrix::rowSums(dat)!=0,]
   if (norm){
     library(scran)
     library(SingleCellExperiment)
