@@ -177,3 +177,4 @@ scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV'
   }
   return(vars)
 }
+
