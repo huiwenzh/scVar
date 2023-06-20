@@ -96,6 +96,7 @@ scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV'
       names(vars) <- dec@rownames
     }
     else if (metric == 'DM'){
+      dat <- as.matrix(dat)
       Norm_factor <- DESeq2::estimateSizeFactorsForMatrix(dat)
       dat <- t( t(dat) / Norm_factor)
       # remove mean normalised value less than 10
@@ -130,7 +131,7 @@ scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV'
       DM_filtered1 <- DM_filtered1[order(DM_filtered1[,1]),]
       
       z1 <- zoo::zoo(DM_filtered1)  
-      roll_median1 <- rollapply(z1,width=50,by=25, FUN=median) #g(i)
+      roll_median1 <- zoo::rollapply(z1,width=50,by=25, FUN=median) #g(i)
       
       vars <- c() # DM = r(i)-g(i) 
       for (i in 1:length(DM.1)){
