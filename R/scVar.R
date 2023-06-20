@@ -171,7 +171,7 @@ scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV'
         PrintProgress = F, Regression = TRUE,WithSpikes = FALSE 
       )
       ChainSummary <- BASiCS::Summary(Chain)
-      vars <-  BASiCS::ChainSummary@parameters[["delta"]][,1]
+      vars <- ChainSummary@parameters[["delta"]][,1]
     }
   }
   return(vars)
