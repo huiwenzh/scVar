@@ -30,16 +30,16 @@ scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV'
       vars <- apply(dat,1,function(x) IQR(x))
     }
     else if (metric == 'CV'){
-      means <- rowMeans(dat)
+      means <- rowMeans(as.matrix(dat))
       vars <- apply(dat,1,function(x) sd(x))/means
     }
     else if (metric == 'FF'){
-      means <- rowMeans(dat)
+      means <- rowMeans(as.matrix(dat))
       vars <- apply(dat,1,function(x) var(x))/means
     }
     else if (metric == 'LCV'){
-      CVs <- apply(dat,1,function(x) sd(x))/rowMeans(dat)
-      vars.df <- cbind(rowMeans(dat),CVs)
+      CVs <- apply(dat,1,function(x) sd(x))/rowMeans(as.matrix(dat))
+      vars.df <- cbind(rowMeans(as.matrix(dat)),CVs)
       colnames(vars.df) <- c("Mean","CV")
       # ordered cv by mean expression
       vars.df <- vars.df[order(vars.df[,1]),]
