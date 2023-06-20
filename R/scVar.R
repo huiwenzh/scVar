@@ -66,7 +66,7 @@ scVar <- function(dat, norm=F, metric=c('SD',"MAD","IQR","CV","FF",'scran','LCV'
   }
   if (!norm){
     if (metric == 'edgeR'){
-      y <- edgeR::DGEList(dat)
+      y <- edgeR::DGEList(dat,group = group)
       y <- edgeR::estimateDisp(y,robust=TRUE)
       vars <- sqrt(y$tagwise.dispersion)
       names(vars) <- rownames(dat)
